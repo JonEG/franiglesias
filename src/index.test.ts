@@ -9,3 +9,19 @@ describe('For Managing Products Port', () => {
         })
     })
 })
+
+class GetCurrentStock {
+    constructor(private productId: string) {}
+}
+
+class GetCurrentStockResponse {
+
+}
+
+class GetCurrentStockHandler {
+    handle(query: GetCurrentStock): GetCurrentStockResponse {
+        throw new UnknownProduct('Method not implemented.');
+    }   
+}
+
+class UnknownProduct extends Error {}
