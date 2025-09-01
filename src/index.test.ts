@@ -8,7 +8,9 @@ describe('For Managing Products Port', () => {
         it('Should fail with Unknown Product Error', () => {
             const query = new GetCurrentStock('no-exists-product-id')
             const handler = new GetCurrentStockHandler()
-            expect(() => handler.handle(query)).toThrow(UnknownProduct)
+            const response = handler.handle(query)
+            expect(response.success()).toBeFalsy()
+            expect(response.error()).toEqual("Product with id no-exists-product-id does not exist")
         })
     })
 })
