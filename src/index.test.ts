@@ -1,4 +1,7 @@
 import { describe, it, expect } from 'vitest';
+import { GetCurrentStock } from './inventory/forManagingProducts/getCurrentStock/GetCurrentStock';
+import { GetCurrentStockHandler } from './inventory/forManagingProducts/getCurrentStock/GetCurrentStockHandler';
+import { UnknownProduct } from './inventory/forManagingProducts/UnknownProduct';
 
 describe('For Managing Products Port', () => {
     describe('When we ask the current stock of a not existing product', () => {
@@ -10,18 +13,3 @@ describe('For Managing Products Port', () => {
     })
 })
 
-class GetCurrentStock {
-    constructor(private productId: string) {}
-}
-
-class GetCurrentStockResponse {
-
-}
-
-class GetCurrentStockHandler {
-    handle(query: GetCurrentStock): GetCurrentStockResponse {
-        throw new UnknownProduct('Method not implemented.');
-    }   
-}
-
-class UnknownProduct extends Error {}
