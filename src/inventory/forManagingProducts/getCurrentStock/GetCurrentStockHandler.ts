@@ -5,6 +5,6 @@ import { UnknownProduct } from "../UnknownProduct";
 
 export class GetCurrentStockHandler {
     handle(query: GetCurrentStock): GetCurrentStockResponse {
-        throw new UnknownProduct('Method not implemented.');
+        return new GetCurrentStockResponse();
     }
 }
