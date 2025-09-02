@@ -1,4 +1,6 @@
-export class InMemoryProducts {
+import { ForRetrievingProducts } from "../../inventory/forRetrievingProducts/ForRetrievingProducts";
+
+export class InMemoryProducts implements ForRetrievingProducts {
     private products: Map<String, object> = new Map();
 
     constructor() {

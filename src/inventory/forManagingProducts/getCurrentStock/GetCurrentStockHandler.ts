@@ -1,6 +1,6 @@
+import { InMemoryProducts } from "../../../driven/forRetrievingProducts/InMemoryProducts";
 import { GetCurrentStock } from "./GetCurrentStock";
 import { GetCurrentStockResponse } from "./GetCurrentStockResponse";
-import { InMemoryProducts } from "./InMemoryProducts";
 
 
 export class GetCurrentStockHandler {
