@@ -21,4 +21,17 @@ describe('For Managing Products Port', () => {
             expect(response.error()).toEqual("Product with id out-of-stock-product-id is out of stock")
         })
     })
+    describe('When we ask the current stock of an in stock product', () => {
+        it('Should return the current stock', () => {
+            const query = new GetCurrentStock('in-stock-product-id')
+            const handler = new GetCurrentStockHandler()
+            const response = handler.handle(query)
+            expect(response.success()).toBeTruthy()
+            expect(response.payload()).toEqual({
+                id: 'in-stock-product-id',
+                name: 'In of Stock Product',
+                stock: 10
+            })
+        })
+    })
 })
