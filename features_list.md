@@ -3,7 +3,7 @@
 ## Stock Management
 - [ ] Add products to increase stock
 - [ ] Consume products (error if insufficient stock)
-- [ ] Check stock of existing products (errors if nonexistent or zero)
+- [x] Check stock of existing products (errors if nonexistent or zero)
 
 ## Product History
 - [ ] Retrieve individual product history
