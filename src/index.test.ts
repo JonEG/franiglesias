@@ -47,7 +47,7 @@ describe('For Managing Products Port', () => {
     })
     describe('ProductId', () => {
         it('Should not be instantiated empty', () => {
-            expect(() => {ProductId.validFrom('')}).toThrowError(InvalidIdentifierError)
+            expect(() => {ProductId.ensureValid('')}).toThrowError(InvalidIdentifierError)
         })
     })
 })
