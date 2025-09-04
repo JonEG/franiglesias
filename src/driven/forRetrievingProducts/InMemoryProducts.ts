@@ -1,4 +1,5 @@
-import { ForRetrievingProducts, ProductId } from "../../inventory/forRetrievingProducts/ForRetrievingProducts";
+import { ForRetrievingProducts } from "../../inventory/forRetrievingProducts/ForRetrievingProducts";
+import { ProductId } from "../../inventory/product/ProductId";
 
 export class InMemoryProducts implements ForRetrievingProducts {
     private products: Map<String, object> = new Map();

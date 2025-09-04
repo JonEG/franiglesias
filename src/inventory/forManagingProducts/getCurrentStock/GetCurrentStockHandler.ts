@@ -1,5 +1,5 @@
 import { InMemoryProducts } from "../../../driven/forRetrievingProducts/InMemoryProducts";
-import { ProductId } from "../../forRetrievingProducts/ForRetrievingProducts";
+import { ProductId } from "../../product/ProductId";
 import { GetCurrentStock } from "./GetCurrentStock";
 import { GetCurrentStockResponse } from "./GetCurrentStockResponse";
 
@@ -19,6 +19,9 @@ export class GetCurrentStockHandler {
     handle(query: GetCurrentStock): GetCurrentStockResponse {
         const productId = new ProductId(query.productId)
         const product = this.getProductById(productId) as ProductStock | undefined
+        if(productId.isEmpty()){
+            return GetCurrentStockResponse.withError("Invalid product id")
+        }
         if(!product){
             return GetCurrentStockResponse.withError(`Product with id ${(productId)} does not exist`)
         }
