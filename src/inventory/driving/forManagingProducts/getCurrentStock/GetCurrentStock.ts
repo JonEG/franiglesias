@@ -1,3 +1,3 @@
 export class GetCurrentStock {
-    constructor(private productId: string) { }
+    constructor(public productId: string) { }
 }
