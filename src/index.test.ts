@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest';
+import { GetCurrentStock } from './inventory/driving/forManagingProducts/getCurrentStock/GetCurrentStock';
+import { GetCurrentStockHandler } from './inventory/driving/forManagingProducts/getCurrentStock/GetCurrentStockHandler';
 
 function BuildGetCurrentStockHandler(): GetCurrentStockHandler {
     return new GetCurrentStockHandler()
@@ -19,13 +21,3 @@ describe('For Managing Products Port', () => {
         })
     })
 })
-
-class GetCurrentStock {
-    constructor(private productId: string) { }
-}
-
-class GetCurrentStockHandler {
-    handle(query: GetCurrentStock) {
-        throw new Error('Method not implemented.');
-    }
-}
