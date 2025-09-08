@@ -9,6 +9,10 @@ export class Inventory {
         const pId = ProductId.validatedFrom(productId);
         const productData = this.storage.getById(pId.toString());
 
+        if(!productData) {
+            throw new Error(`Product with id ${productId} not found`);
+        }
+
         return new ProductStock(
             productData.id,
             productData.name,

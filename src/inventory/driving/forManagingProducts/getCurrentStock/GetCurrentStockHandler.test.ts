@@ -13,7 +13,7 @@ describe('GetCurrentStockHandler', () => {
             expect(stock).toEqual({
                 id: 'existing-product-id',
                 name: 'existing-product-name',
-                stock: 10
+                quantity: 10
             })
         })
     })

@@ -5,7 +5,14 @@ import { Inventory } from './inventory/Inventory';
 import { InMemoryProductStorage } from './driven/forStoringProducts/InMemoryProductStorage';
 
 function BuildGetCurrentStockHandler(): GetCurrentStockHandler {
-    return new GetCurrentStockHandler(new Inventory(new InMemoryProductStorage()))
+    const examples = new Map<string, Object>([
+        ['existing-product-id', {
+            id: 'existing-product-id',
+            name: 'existing-product-name',
+            quantity: 10
+        }]
+    ])
+    return new GetCurrentStockHandler(new Inventory(new InMemoryProductStorage(examples)))
 }
 
 describe('For Managing Products Port', () => {
@@ -18,7 +25,7 @@ describe('For Managing Products Port', () => {
             expect(stock).toEqual({
                 id: 'existing-product-id',
                 name: 'existing-product-name',
-                stock: 10
+                quantity: 10
             })
         })
     })

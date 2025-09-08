@@ -1,12 +1,12 @@
 
 export class ProductStock {
-    constructor(private readonly id: string, private readonly name: string, private readonly stock: number) { }
+    constructor(private readonly id: string, private readonly name: string, private readonly quantity: number) { }
 
     print(): object {
         return {
             id: this.id,
             name: this.name,
-            stock: this.stock
+            quantity: this.quantity
         };
     }
 }
