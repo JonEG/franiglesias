@@ -2,9 +2,10 @@ import { describe, it, expect } from 'vitest';
 import { GetCurrentStock } from './inventory/driving/forManagingProducts/getCurrentStock/GetCurrentStock';
 import { GetCurrentStockHandler } from './inventory/driving/forManagingProducts/getCurrentStock/GetCurrentStockHandler';
 import { Inventory } from './inventory/Inventory';
+import { InMemoryProductStorage } from './driven/forStoringProducts/InMemoryProductStorage';
 
 function BuildGetCurrentStockHandler(): GetCurrentStockHandler {
-    return new GetCurrentStockHandler(new Inventory())
+    return new GetCurrentStockHandler(new Inventory(new InMemoryProductStorage()))
 }
 
 describe('For Managing Products Port', () => {
