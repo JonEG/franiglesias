@@ -4,7 +4,7 @@ import { ProductStock } from "../../src/inventory/ProductStock";
 
 export class InventoryOutOfStockProductStub extends Inventory {
     constructor() {
-        super({} as ForStoringProducts);
+        super({} as ForStoringProducts)
     }
 
     stockById(productId: string): any {

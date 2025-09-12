@@ -2,8 +2,6 @@ import type { ForStoringProducts } from "../../../src/inventory/driven/forStorin
 
 
 export class ProductStorageStub implements ForStoringProducts {
-    constructor() { }
-
     getById(productId: string): { id: string; name: string; quantity: number; } {
         return {
             id: 'existing-product-id',
