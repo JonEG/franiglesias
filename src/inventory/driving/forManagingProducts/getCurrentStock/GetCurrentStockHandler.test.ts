@@ -1,7 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { GetCurrentStock } from './GetCurrentStock';
 import { GetCurrentStockHandler } from './GetCurrentStockHandler';
-import { InventoryNoStockProductStub, InventoryStub, InventoryUnknownProductStub } from '../../../Inventory';
+import { InventoryNoStockProductStub } from "../../../../../test/inventory/InventoryNoStockProductStub";
+import { InventoryUnknownProductStub } from "../../../../../test/inventory/InventoryUnknownProductStub";
+import { InventoryStub } from '../../../../../test/inventory/InventoryStub';
 
 describe('GetCurrentStockHandler', () => {
     describe('When we ask the current stock of an existing product', () => {

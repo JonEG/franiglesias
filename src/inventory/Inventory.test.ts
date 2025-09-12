@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { Inventory, ProductStorageNoProductStub, ProductStorageStub } from "./Inventory"
+import { Inventory } from "./Inventory"
 import { ProductStock } from "./ProductStock"
+import { ProductStorageStub } from '../../test/driven/forStoringProducts/ProductStorageStub';
+import { ProductStorageNoProductStub } from '../../test/driven/forStoringProducts/ProductStorageNoProductStub';
 
 describe('Inventory', () => {
     it('should return a ProductStock providing and id', () => {

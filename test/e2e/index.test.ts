@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { GetCurrentStock } from './inventory/driving/forManagingProducts/getCurrentStock/GetCurrentStock';
-import { GetCurrentStockHandler } from './inventory/driving/forManagingProducts/getCurrentStock/GetCurrentStockHandler';
-import { Inventory } from './inventory/Inventory';
-import { InMemoryProductStorage } from './driven/forStoringProducts/InMemoryProductStorage';
+import { GetCurrentStock } from '../../src/inventory/driving/forManagingProducts/getCurrentStock/GetCurrentStock';
+import { GetCurrentStockHandler } from '../../src/inventory/driving/forManagingProducts/getCurrentStock/GetCurrentStockHandler';
+import { Inventory } from '../../src/inventory/Inventory';
+import { InMemoryProductStorage } from '../../src/driven/forStoringProducts/InMemoryProductStorage';
 
 function BuildGetCurrentStockHandler(): GetCurrentStockHandler {
     const examples = new Map<string, Object>([
