@@ -1,13 +1,14 @@
+import type { ForStoringProducts } from "../../src/inventory/driven/forStoringProducts/ForStoringProducts";
 import { Inventory } from "../../src/inventory/Inventory";
-import { ProductStorageNoProductStub } from "../driven/forStoringProducts/ProductStorageNoProductStub";
+import type { ProductStock } from "../../src/inventory/ProductStock";
 
 
 export class InventoryUnknownProductStub extends Inventory {
     constructor() {
-        super(new ProductStorageNoProductStub());
+        super({} as ForStoringProducts)
     }
 
-    stockById(productId: string): any {
+    stockById(productId: string): ProductStock {
         throw new Error(`Product with id ${productId} not found`);
     }
 }

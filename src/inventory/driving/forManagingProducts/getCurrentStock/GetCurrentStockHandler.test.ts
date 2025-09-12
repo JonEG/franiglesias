@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { GetCurrentStock } from './GetCurrentStock';
 import { GetCurrentStockHandler } from './GetCurrentStockHandler';
-import { InventoryNoStockProductStub } from "../../../../../test/inventory/InventoryNoStockProductStub";
+import { InventoryOutOfStockProductStub } from "../../../../../test/inventory/InventoryNoStockProductStub";
 import { InventoryUnknownProductStub } from "../../../../../test/inventory/InventoryUnknownProductStub";
 import { InventoryStub } from '../../../../../test/inventory/InventoryStub';
 
@@ -31,7 +31,7 @@ describe('GetCurrentStockHandler', () => {
     describe('When we ask the current stock of an out of stock product', () => {
         it('should throw Error if empty stock', () => {
             const query = new GetCurrentStock('out-of-stock-product-id')
-            const handler = new GetCurrentStockHandler(new InventoryNoStockProductStub())
+            const handler = new GetCurrentStockHandler(new InventoryOutOfStockProductStub())
             const result = handler.handle(query)
             expect(() => {result.unwrap()}).toThrowError()
             expect(result.errorMessage()).toEqual(`Product with id out-of-stock-product-id is out of stock`)
