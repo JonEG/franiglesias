@@ -52,4 +52,13 @@ describe('For Managing Products Port', () => {
             expect(result.errorMessage()).toEqual(`Product with id out-of-stock-product-id is out of stock`)
         })
     })
+    describe('When we ask with an invalid product id', () => {
+        it('Should return an error', () => {
+            const query = new GetCurrentStock('')
+            const handler = BuildGetCurrentStockHandler()
+            const result = handler.handle(query)
+            expect(() => {result.unwrap()}).toThrowError(Error)
+            expect(result.errorMessage()).toEqual('Invalid product id []')
+        })
+    })
 })
