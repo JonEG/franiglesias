@@ -1,4 +1,5 @@
-import { ForStoringProducts } from "../../inventory/ForStoringProducts";
+import type { ForStoringProducts } from "../../inventory/driven/forStoringProducts/ForStoringProducts";
+
 
 export class InMemoryProductStorage implements ForStoringProducts {
     constructor(private products = new Map<string, Object>()) {}

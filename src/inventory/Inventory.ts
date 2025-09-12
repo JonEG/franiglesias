@@ -1,4 +1,5 @@
-import { ForStoringProducts } from "./ForStoringProducts";
+
+import type { ForStoringProducts } from "./driven/forStoringProducts/ForStoringProducts";
 import { ProductId } from "./ProductId";
 import { ProductStock } from "./ProductStock";
 
