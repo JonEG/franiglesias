@@ -10,6 +10,11 @@ function BuildGetCurrentStockHandler(): GetCurrentStockHandler {
             id: 'existing-product-id',
             name: 'existing-product-name',
             quantity: 10
+        }],
+        ['out-of-stock-product-id', {
+            id: 'out-of-stock-product-id',
+            name: 'out-of-stock-product-name',
+            quantity: 0
         }]
     ])
     return new GetCurrentStockHandler(new Inventory(new InMemoryProductStorage(examples)))
@@ -36,6 +41,15 @@ describe('For Managing Products Port', () => {
             const result = handler.handle(query)
             expect(() => {result.unwrap()}).toThrowError()
             expect(result.errorMessage()).toEqual(`Product with id no-existing-product-id not found`)
+        })
+    })
+    describe('When we ask the current stock of a product with no stock left', () => {
+        it('Should return an error', () => {
+            const query = new GetCurrentStock('out-of-stock-product-id')
+            const handler = BuildGetCurrentStockHandler()
+            const result = handler.handle(query)
+            expect(() => {result.unwrap()}).toThrowError()
+            expect(result.errorMessage()).toEqual(`Product with id out-of-stock-product-id is out of stock`)
         })
     })
 })

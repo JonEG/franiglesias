@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { GetCurrentStock } from './GetCurrentStock';
 import { GetCurrentStockHandler } from './GetCurrentStockHandler';
-import { InventoryStub, InventoryUnknownProductStub } from '../../../Inventory';
+import { InventoryNoStockProductStub, InventoryStub, InventoryUnknownProductStub } from '../../../Inventory';
 
 describe('GetCurrentStockHandler', () => {
     describe('When we ask the current stock of an existing product', () => {
@@ -26,4 +26,14 @@ describe('GetCurrentStockHandler', () => {
             expect(result.errorMessage()).toEqual('Product with id no-existing-product-id not found')
         })
     })
+    describe('When we ask the current stock of an out of stock product', () => {
+        it('should throw Error if empty stock', () => {
+            const query = new GetCurrentStock('out-of-stock-product-id')
+            const handler = new GetCurrentStockHandler(new InventoryNoStockProductStub())
+            const result = handler.handle(query)
+            expect(() => {result.unwrap()}).toThrowError()
+            expect(result.errorMessage()).toEqual(`Product with id out-of-stock-product-id is out of stock`)
+        })
+    })
+    
 })
