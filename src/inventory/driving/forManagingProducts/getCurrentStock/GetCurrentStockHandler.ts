@@ -12,6 +12,11 @@ export class GetCurrentStockHandler {
     handle(query: GetCurrentStock): GetCurrentStockResponse  {
         try {
             const productStock = this.inventory.stockById(query.productId)
+
+            if(productStock.isOutOfStock()) {
+                return GetCurrentStockResponse.withError(`Product with id ${query.productId} is out of stock`)
+            }
+
             return GetCurrentStockResponse.withResult(productStock.print())
         } catch (e) {
             return GetCurrentStockResponse.withError((e as Error).message)

@@ -42,6 +42,16 @@ export class InventoryUnknownProductStub extends Inventory {
     }
 }
 
+export class InventoryNoStockProductStub extends Inventory {
+    constructor() {
+        super(new ProductStorageNoStockProductStub())
+    }
+
+    stockById(productId: string): any {
+        throw new Error(`Product with id ${productId} is out of stock`);
+    }
+}
+
 export class ProductStorageStub implements ForStoringProducts {
     constructor() { }
 
@@ -58,4 +68,16 @@ export class ProductStorageNoProductStub implements ForStoringProducts {
     constructor() { }
     
     getById(productId: string): undefined {}
+}
+
+export class ProductStorageNoStockProductStub implements ForStoringProducts {
+    constructor() { }
+
+    getById(productId: string): { id: string; name: string; quantity: number; } {
+        return {
+            id: 'out-of-stock-product-id',
+            name: 'out-of-stock-product-name',
+            quantity: 0,
+        };
+    }
 }
