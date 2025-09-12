@@ -9,8 +9,12 @@ export class GetCurrentStockHandler {
         this.inventory = inventory
     }
 
-    handle(query: GetCurrentStock) {
-        const productStock = this.inventory.stockById(query.productId)
-        return GetCurrentStockResponse.withResult(productStock.print())
+    handle(query: GetCurrentStock): GetCurrentStockResponse  {
+        try {
+            const productStock = this.inventory.stockById(query.productId)
+            return GetCurrentStockResponse.withResult(productStock.print())
+        } catch (e) {
+            return GetCurrentStockResponse.withError((e as Error).message)
+        }
     }
 }

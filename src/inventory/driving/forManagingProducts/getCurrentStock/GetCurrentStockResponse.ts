@@ -1,11 +1,22 @@
 export class GetCurrentStockResponse {
-    private constructor(private readonly result: object, private readonly error: string | undefined) { }
+    private constructor(private readonly result: object | null, private readonly error: string | null) { }
 
-    static withResult(result: object) {
-        return new GetCurrentStockResponse(result, undefined);
+    static withError(message: string) {
+        return new GetCurrentStockResponse(null, message)
+    }
+
+    static withResult(result: {}) {
+        return new GetCurrentStockResponse(result, null)
     }
 
     unwrap() {
-        return this.result;
+        if (this.error && !this.result) {
+            throw new Error(this.error)
+        }
+        return this.result
+    }
+
+    errorMessage(): string {
+        return this.error!
     }
 }

@@ -32,6 +32,16 @@ export class InventoryStub extends Inventory {
     }
 }
 
+export class InventoryUnknownProductStub extends Inventory {
+    constructor() {
+        super(new ProductStorageNoProductStub())
+    }
+
+    stockById(productId: string): any {
+        throw new Error(`Product with id ${productId} not found`);
+    }
+}
+
 export class ProductStorageStub implements ForStoringProducts {
     constructor() { }
 
@@ -42,4 +52,10 @@ export class ProductStorageStub implements ForStoringProducts {
             quantity: 10,
         };
     }
+}
+
+export class ProductStorageNoProductStub implements ForStoringProducts {
+    constructor() { }
+    
+    getById(productId: string): undefined {}
 }
