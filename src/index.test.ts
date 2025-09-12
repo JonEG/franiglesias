@@ -29,4 +29,13 @@ describe('For Managing Products Port', () => {
             })
         })
     })
+    describe('When we ask the current stock of a non existing product', () => {
+        it('Should return an error', () => {
+            const query = new GetCurrentStock('no-existing-product-id')
+            const handler = BuildGetCurrentStockHandler()
+            const result = handler.handle(query)
+            expect(() => {result.unwrap()}).toThrowError()
+            expect(result.errorMessage()).toEqual(`Product with id no-existing-product-id not found`)
+        })
+    })
 })
