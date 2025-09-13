@@ -7,6 +7,6 @@ export class AddProductHandler {
     constructor(private readonly inventory: Inventory) { }
 
     handle(command: AddProduct): AddProductResponse {
-        return new AddProductResponse()
+        return new AddProductResponse('new-product-id')
     }
 }

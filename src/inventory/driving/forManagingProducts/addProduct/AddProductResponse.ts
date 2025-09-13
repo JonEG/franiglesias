@@ -1,5 +1,8 @@
 export class AddProductResponse {
+    constructor(private readonly result: string)
+    {}
+
     unwrap(): string {
-        return 'new-product-id'
+        return this.result;
     }
 }
