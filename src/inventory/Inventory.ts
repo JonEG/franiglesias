@@ -20,4 +20,8 @@ export class Inventory {
             productData.quantity
         );
     }
+
+    registerProduct(name: string, initialQuantity: number) {
+        return 'new-product-id';
+    }
 }
