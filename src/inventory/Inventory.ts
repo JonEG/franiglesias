@@ -4,7 +4,8 @@ import { ProductId } from "./ProductId";
 import { ProductStock } from "./ProductStock";
 
 export class Inventory {
-    constructor(private storage: ForStoringProducts) {}
+    constructor(private readonly storage: ForStoringProducts, private readonly identityProvider: ForGettingIdentities)
+    {}
 
     stockById(productId: string): ProductStock {
         const pId = ProductId.validatedFrom(productId);
@@ -22,6 +23,20 @@ export class Inventory {
     }
 
     registerProduct(name: string, initialQuantity: number) {
-        return 'new-product-id';
+        const newProductId = this.identityProvider.generate()
+
+        this.storage.store(newProductId, {id: newProductId, name: name, quantity: initialQuantity})
+
+        return newProductId
     }
+}
+
+export class IdentityProvider implements ForGettingIdentities {
+    generate() {
+        return 'new-product-id'
+    }
+}
+
+export interface ForGettingIdentities {
+    generate(): string
 }

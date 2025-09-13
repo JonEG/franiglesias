@@ -9,4 +9,8 @@ export class ProductStorageStub implements ForStoringProducts {
             quantity: 10,
         };
     }
+
+    store(productId: string, product: { id: string; name: string; quantity: number; }): void {
+        // No operation needed for the stub
+    }
 }

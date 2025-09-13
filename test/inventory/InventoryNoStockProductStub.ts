@@ -1,10 +1,10 @@
 import type { ForStoringProducts } from "../../src/inventory/driven/forStoringProducts/ForStoringProducts";
-import { Inventory } from "../../src/inventory/Inventory";
+import { Inventory, type ForGettingIdentities } from "../../src/inventory/Inventory";
 import { ProductStock } from "../../src/inventory/ProductStock";
 
 export class InventoryOutOfStockProductStub extends Inventory {
     constructor() {
-        super({} as ForStoringProducts)
+        super({} as ForStoringProducts, {} as ForGettingIdentities)
     }
 
     stockById(productId: string): any {

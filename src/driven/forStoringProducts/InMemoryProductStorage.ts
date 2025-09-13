@@ -7,4 +7,8 @@ export class InMemoryProductStorage implements ForStoringProducts {
     getById(productId: string): { id: string; name: string; quantity: number; } | undefined {
         return this.products.get(productId) as { id: string; name: string; quantity: number; } | undefined;
     }
+
+    store(productId: string, product: { id: string; name: string; quantity: number; }): void {
+        
+    }
 }

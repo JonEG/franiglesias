@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { GetCurrentStock } from '../../src/inventory/driving/forManagingProducts/getCurrentStock/GetCurrentStock';
 import { GetCurrentStockHandler } from '../../src/inventory/driving/forManagingProducts/getCurrentStock/GetCurrentStockHandler';
-import { Inventory } from '../../src/inventory/Inventory';
+import { IdentityProvider, Inventory } from '../../src/inventory/Inventory';
 import { InMemoryProductStorage } from '../../src/driven/forStoringProducts/InMemoryProductStorage';
 import { AddProduct } from '../../src/inventory/driving/forManagingProducts/addProduct/AddProduct';
 import { AddProductHandler } from '../../src/inventory/driving/forManagingProducts/addProduct/AddProductHandler';
@@ -25,7 +25,7 @@ export class InventoryConfigurator {
         ])
 
         const inMemoryProductStorage = new InMemoryProductStorage(examples);
-        const inventory = new Inventory(inMemoryProductStorage);
+        const inventory = new Inventory(inMemoryProductStorage, new IdentityProvider());
 
         return new InventoryConfigurator(inMemoryProductStorage, inventory);
     }
