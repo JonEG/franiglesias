@@ -5,6 +5,7 @@ import { Inventory } from '../../src/inventory/Inventory';
 import { InMemoryProductStorage } from '../../src/driven/forStoringProducts/InMemoryProductStorage';
 import { AddProduct } from '../../src/inventory/driving/forManagingProducts/addProduct/AddProduct';
 import { AddProductHandler } from '../../src/inventory/driving/forManagingProducts/addProduct/AddProductHandler';
+import type { AddProductResponse } from '../../src/inventory/driving/forManagingProducts/addProduct/AddProductResponse';
 
 export class InventoryConfigurator {
     private constructor(private readonly storage: InMemoryProductStorage, private readonly inventory: Inventory) { }
@@ -86,11 +87,20 @@ describe('For Managing Products Port', () => {
         })
     })
     describe('When we add a product that is not in our database', () => {
-        it('should store in the database so I can get its information', () => {
+        let result: AddProductResponse
+
+        beforeAll(async () => {
             // add the product
             const command = new AddProduct('ProductName', 100)
             const handler = configurator.buildAddProductHandler()
-            const result = handler.handle(command)
+            result = handler.handle(command)
+        })
+
+        it('should confirm the identifier of the added product', () => {
+            expect(result.unwrap()).toEqual('new-product-id')
+        })
+
+        it('should store in the database so I can get its information', () => {
             const newProductId = result.unwrap()
 
             // check if product was added
