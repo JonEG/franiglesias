@@ -5,7 +5,7 @@ import { IdentityProvider, Inventory } from '../../src/inventory/Inventory';
 import { InMemoryProductStorage } from '../../src/driven/forStoringProducts/InMemoryProductStorage';
 import { AddProduct } from '../../src/inventory/driving/forManagingProducts/addProduct/AddProduct';
 import { AddProductHandler } from '../../src/inventory/driving/forManagingProducts/addProduct/AddProductHandler';
-import type { AddProductResponse } from '../../src/inventory/driving/forManagingProducts/addProduct/AddProductResponse';
+import { InvalidProductName, type AddProductResponse } from '../../src/inventory/driving/forManagingProducts/addProduct/AddProductResponse';
 
 export class InventoryConfigurator {
     private constructor(private readonly storage: InMemoryProductStorage, private readonly inventory: Inventory) { }
@@ -117,6 +117,15 @@ describe('For Managing Products Port', () => {
                     quantity: newProductQuantity
                 });
             }
+        })
+    })
+
+    describe('When we try to register products without correct data', () => {
+        it('should fail if a valid name is not provided', () => {
+            const command = new AddProduct('', 100)
+            const handler = configurator.buildAddProductHandler()
+            const result = handler.handle(command)
+            expect(result.error()).toBeInstanceOf(InvalidProductName)
         })
     })
 })
