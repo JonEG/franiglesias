@@ -100,7 +100,7 @@ describe('For Managing Products Port', () => {
             expect(result.unwrap()).toEqual('new-product-id')
         })
 
-        it.skip('should store in the database so I can get its information', () => {
+        it('should store in the database so I can get its information', () => {
             const newProductId = result.unwrap()
 
             // check if product was added
@@ -114,7 +114,7 @@ describe('For Managing Products Port', () => {
                 expect(stock).toEqual({
                     id: newProductId,
                     name: newProductName,
-                    stock: newProductQuantity
+                    quantity: newProductQuantity
                 });
             }
         })

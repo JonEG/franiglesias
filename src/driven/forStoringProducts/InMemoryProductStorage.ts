@@ -9,6 +9,6 @@ export class InMemoryProductStorage implements ForStoringProducts {
     }
 
     store(productId: string, product: { id: string; name: string; quantity: number; }): void {
-        
+        this.products.set(productId, product)
     }
 }
